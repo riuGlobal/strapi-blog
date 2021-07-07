@@ -1,8 +1,13 @@
-FROM node:dubnium-buster
+#!/bin/bash
+FROM node:dubnium-buster-slim
 LABEL mainteiner = 'Ricardo David Ortiz'
 WORKDIR /strapi
 COPY package*.json ./
 RUN npm install
 COPY ./ ./
+RUN mkdir /strapi-data && chown 1000:1000 -R /strapi-data
+VOLUME /strapi-data
+WORKDIR /strapi-data
 EXPOSE 1337
-CMD npm run develop;
+CMD bash /strapi/strapi.sh \
+  && npm run start
