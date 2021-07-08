@@ -11,4 +11,4 @@ VOLUME /strapi-data
 WORKDIR /strapi-data
 EXPOSE 1337
 CMD bash /strapi/strapi.sh \
-  && npm run start
+  && npm run develop
